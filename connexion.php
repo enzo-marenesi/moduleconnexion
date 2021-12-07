@@ -1,11 +1,12 @@
 <?php
 $servername = "localhost";
 $username = "enzo-marenesi";
-$password = "7Gs7w#Wgl6qpcfbu";
+$password = "123456789";
 $dbname ="enzo-marenesi_moduleconnexion";
 
 
-$conn= mysqli_connect("localhost","enz-marenesi","7Gs7w#Wgl6qpcfbu","enzo-marenesi_moduleconnexion");
+$conn= mysqli_connect("localhost","enzo-marenesi","123456789","enzo-marenesi_moduleconnexion");
+
 
 if(isset($_POST['login']) && isset($_POST['password'])){
     $login=$_POST['login'];
