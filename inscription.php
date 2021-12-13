@@ -1,11 +1,11 @@
 <?php
 $servername = "localhost";
-$username = "enzo-marenesi";
-$password = "123456789";
-$dbname ="enzo-marenesi_moduleconnexion";
+$username = "root";
+$password = "";
+$dbname ="moduleconnexion";
 
 
-$conn= mysqli_connect("localhost","enzo-marenesi","123456789","enzo-marenesi_moduleconnexion");
+$conn= mysqli_connect("localhost","root","","moduleconnexion");
 
 if(isset($_POST['envoyer'])) {
 $login = mysqli_real_escape_string($conn,htmlspecialchars($_POST['login'])); 
@@ -75,6 +75,16 @@ $password = mysqli_real_escape_string($conn,htmlspecialchars($_POST['password'])
             </ul>
             <ul class="menuderoulant">
                 <li><a href="admin.php">Admin</a>
+              </li>
+            </ul>
+            <ul class="menuderoulant">
+                <li> <div class="topnav">
+  <a  class="active"> <?php  if (isset($_SESSION['login'])) {
+      echo 'Connecté en tant que '.$_SESSION['login']; } ?> </a>
+  <div id="menuprofil">
+    <a  href = "deco.php?logout='1'" >Déconnexion</a>
+  </div>
+</div>
               </li>
             </ul>
             </div>    

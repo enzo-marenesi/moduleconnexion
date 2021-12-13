@@ -1,11 +1,11 @@
 <?php
 $servername = "localhost";
-$username = "enzo-marenesi";
-$password = "123456789";
-$dbname ="enzo-marenesi_moduleconnexion";
+$username = "root";
+$password = "";
+$dbname ="moduleconnexion";
 
 
-$conn= mysqli_connect("localhost","enzo-marenesi","123456789","enzo-marenesi_moduleconnexion");
+$conn= mysqli_connect("localhost","root","","moduleconnexion");
 
 session_start();
 if (!isset($_SESSION['login'])) {
@@ -37,7 +37,7 @@ $password = mysqli_real_escape_string($conn,htmlspecialchars($_POST['password'])
     $run = mysqli_query($conn, $query) or die(mysqli_error());
 
     if($run) {
-     header ("refresh:2;profil.php");
+     header ("location: deco.php");
     }
         else {
         } 
@@ -60,7 +60,7 @@ if(isset($_POST['changepassword'])) {
         $run = mysqli_query($conn, $query) or die(mysqli_error());
     
         if($run) {
-         header ("refresh:2;profil.php");
+         header ("location: deco.php");
         }    
         else {
         }    
@@ -79,7 +79,7 @@ if(isset($_POST['changeprenom'])) {
     $run = mysqli_query($conn, $query) or die(mysqli_error());
 
     if($run) {
-     header ("refresh:2;profil.php");
+     header ("location: deco.php");
     }
     else {
     }     
@@ -96,11 +96,13 @@ if(isset($_POST['changenom'])) {
     $run = mysqli_query($conn, $query) or die(mysqli_error());
 
     if($run) {
-     header ("refresh:2;profil.php");
+     header ("location: deco.php");
     }
     else {
     }    
 }
+
+
 ?>
 
 
@@ -131,13 +133,35 @@ if(isset($_POST['changenom'])) {
               <ul class="menuderoulant">
                 <li><a href="profil.php">Profil</a>
                   <ul class="sousmenu">
-                      <li><a href="connexion.php">Connexion</a></li>
-                      <li><a href="inscription.php">Inscription</a></li>
+                  <?php
+                 if (isset($_SESSION['login'])) {
+                     echo "";
+                     
+                 }
+                     else{
+                         echo '
+                         <li><a href="connexion.php">Connexion</a></li>
+                             <li><a href="inscription.php">Inscription</a></li>
+                         </ul>';
+                     }
+                 ?>
                   </ul>
               </li>
             </ul>
             <ul class="menuderoulant">
                 <li><a href="admin.php">Admin</a>
+              </li>
+            </ul>
+            <ul class="menuderoulant">
+                <li><div class="topnav">
+  <a  class="active"> 
+      <?php  
+      if (isset($_SESSION['login'])) {
+      echo'
+      <div id="menuprofil">
+        <a  href = "deco.php?logout=1" >Déconnexion</a>
+      </div>'; } ?> </a>
+</div>
               </li>
             </ul>
             </div>    
